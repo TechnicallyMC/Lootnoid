@@ -1,7 +1,7 @@
 local BaseObject = {}
 BaseObject.__index = BaseObject
 
-local require = require(script.Parent.loader).load(script)
+local require = require(script.Parent:WaitForChild("loader")).load(script.Parent.Parent.Parent)
 local Maid = require("Maid")
 
 function BaseObject.new(obj)

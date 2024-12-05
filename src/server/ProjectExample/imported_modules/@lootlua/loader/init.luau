@@ -70,7 +70,7 @@ function Loader:__call(request)
 end
 
 function Loader:_findPackage(request)
-	for _, package in pairs(self._packages:GetChildren()) do
+	for _, package in pairs(self._packages:GetDescendants()) do
 		if package.Name == request then
 			return package
 		end
@@ -82,7 +82,7 @@ function Loader:_populateClient()
 	clone.Name = self._packages.Name
 
 	for _, folder in pairs(clone:GetDescendants()) do
-		if not folder.Parent:FindFirstChild("loader") then
+		if folder:IsA("Folder") and not folder.Parent:FindFirstChild("loader") then
 			local link = script.LoaderLink:Clone()
 			link.Parent = folder
 			link.Name = "loader"
